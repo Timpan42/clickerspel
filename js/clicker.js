@@ -107,19 +107,34 @@ window.addEventListener('load', (event) => {
  */
 upgrades = [
     {
-        name: 'Fin sop',
+        name: 'Frayer',
         cost: 10,
         amount: 1,
     },
     {
-        name: 'Spade',
+        name: 'XXL Airfryer',
         cost: 100,
         amount: 10,
     },
     {
-        name: 'Hjälpreda',
+        name: 'Industri Frayer',
         cost: 1000,
         amount: 100,
+    },
+    {
+        name: 'Conveyor Belt',
+        cost: 5000,
+        amount: 500,
+    },
+    {
+        name: 'The Conqueror of Fryers',
+        cost: 10000,
+        amount: 1000,
+    },
+    {
+        name: 'The Galexy Fryer',
+        cost: 100000,
+        amount: 10000,
     },
 ];
 
@@ -149,7 +164,7 @@ function createCard(upgrade) {
     const cost = document.createElement('p');
 
     header.textContent = `${upgrade.name}, +${upgrade.amount} per sekund.`;
-    cost.textContent = `Köp för ${upgrade.cost} benbitar.`;
+    cost.textContent = `Köp för ${upgrade.cost} Friterade personer.`;
 
     card.addEventListener('click', (e) => {
         if (money >= upgrade.cost) {

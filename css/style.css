@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
 /* reset */
 /* https://piccalil.li/blog/a-modern-css-reset/ */
 /* Box sizing rules */
@@ -89,9 +91,9 @@ select {
 body {
     display: flex;
     flex-direction: column;
-    background-color: #f8f8f8;
-    color: #121212;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-image: url("../img/friterad_backrundpng.png");
+    color: whitesmoke;
+    font-family: 'Orbitron', sans-serif;
 }
 /* För att göra footern sticky så har vi flex på bodyn och då räcker det med 
  * margin-top auto här.
@@ -168,9 +170,12 @@ footer {
 
 /* för spelelementet används #id som selektor för att skapa css reglerna */
 #click {
-    width: 8rem;
-    height: 8rem;
+    width: 10rem;
+    height: 10rem;
     font-size: 2rem;
+    background-image: url(../img/fristös_pojken.jpg);
+    background-size: cover;
+    color: whitesmoke;
 }
 
 /* #msgbox är elementet som visar sidans toasts, popupmeddelanden
@@ -213,13 +218,13 @@ footer {
     display: flex;
     justify-content: space-between;
     cursor: pointer;
-    border: 1px solid #646464;
+    border: 0.1px solid #646464;
     margin: 0.5rem 0;
     padding: 1rem 0.5rem;
 }
 
 .card:hover {
-    background-color: #dfdfdf;
+    background-color: #659100;
 }
 /* klassen används på kortets titel, font-weight: 600 gör fonten fetare, en normal
  * font vikt är oftast 400
