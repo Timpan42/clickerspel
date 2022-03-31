@@ -111,12 +111,13 @@ footer {
  * Layout styrs även här att fungera skapligt med olika devices.
  */
 .container {
-    margin-left: auto;
-    margin-right: auto;
-    column-gap: 10rem;
+    margin-left: 5%;
+    margin-right: 5%;
+    column-gap: 6rem;
     width: 100%;
     display: flex;
     justify-content: space-between;
+    flex-grow: 1;
 }
 @media (min-width: 36rem) {
     .container {
@@ -164,6 +165,10 @@ footer {
 .game-hud {
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
+}
+.game-size{
+
 }
 
 .game-currency {
@@ -218,17 +223,26 @@ footer {
     display: flex;
     justify-content: space-between;
     cursor: pointer;
-    border: 1px solid #646464;
+    border: 0,1px solid #646464;
     margin: 0.5rem 0;
     padding: 1rem 0.5rem;
 }
 
 .card:hover {
-    background-color: #dfdfdf;
+    background-color: #577504;
 }
 /* klassen används på kortets titel, font-weight: 600 gör fonten fetare, en normal
  * font vikt är oftast 400
  */
 .title {
     font-weight: 600;
+}
+
+.item{
+    margin-top: 20px;
+}
+
+.header_text{
+    width: 100%;
+    font-size: 15px;
 }
