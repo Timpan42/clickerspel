@@ -1,6 +1,9 @@
 /* reset */
 /* https://piccalil.li/blog/a-modern-css-reset/ */
 /* Box sizing rules */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
+
 *,
 *::before,
 *::after {
@@ -87,11 +90,12 @@ select {
  * Genom att sätta en font på body elementet så används fonten på hela sidan.
  */
 body {
-    display: flex;
-    flex-direction: column;
-    background-color: #f8f8f8;
-    color: #121212;
+    color: white;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-image: url("img_test/friterad_backrundpng.png");
+    background-size: cover;
+    font-family: 'Orbitron', sans-serif;
+
 }
 /* För att göra footern sticky så har vi flex på bodyn och då räcker det med 
  * margin-top auto här.
@@ -109,9 +113,10 @@ footer {
 .container {
     margin-left: auto;
     margin-right: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    column-gap: 10rem;
     width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 @media (min-width: 36rem) {
     .container {

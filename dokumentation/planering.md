@@ -1,7 +1,7 @@
 ## Färg
-
+Oklart för stunden 
 ## Typsnitt
-
+Orbitron
 ## Layout
 
 ## Uppgraderingar
