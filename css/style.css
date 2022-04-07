@@ -224,7 +224,7 @@ footer {
 }
 
 .card:hover {
-    background-color: #659100;
+    background-image: url(../img/Friterad_Stefan_öga.jpg);
 }
 /* klassen används på kortets titel, font-weight: 600 gör fonten fetare, en normal
  * font vikt är oftast 400
