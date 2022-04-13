@@ -11,6 +11,7 @@ const clickerButton = document.querySelector('#click');
 const moneyTracker = document.querySelector('#money');
 const mpsTracker = document.querySelector('#mps'); // money per second
 const mpcTracker = document.querySelector('#mpc'); // money per click
+const upgradesTracker = document.querySelector('#upgrades');
 const upgradeList = document.querySelector('#upgradelist');
 const msgbox = document.querySelector('#msgbox');
 
@@ -24,9 +25,39 @@ const msgbox = document.querySelector('#msgbox');
 let money = 0;
 let moneyPerClick = 1;
 let moneyPerSecond = 0;
+let acquiredUpgrades = 0;
 let last = 0;
+let numberOfClicks = 0; // hur många gånger har spelare eg. klickat
 
-let achievementTest = false;
+// likt upgrades skapas här en array med objekt som innehåller olika former 
+// av achievements.
+// requiredSOMETHING är vad som krävs för att få dem
+
+let achievements = [
+    {
+        description: 'Din första investerare',
+        requiredUpgrades: 1,
+        acquired: false,
+    },
+
+    {
+        description: 'Det har börjat!',
+        requiredClicks: 10,
+        acquired: false,
+    },
+
+    {
+        description: 'Pengarna! väta jag menar personer',
+        requiredUpgrades: 10,
+        acquired: false,
+    },
+
+    {
+        description: 'Du har ett problem, jag har samma problem',
+        requiredClicks: 10000,
+        acquired: false,
+    },
+];
 
 /* Med ett valt element, som knappen i detta fall så kan vi skapa listeners
  * med addEventListener så kan vi lyssna på ett specifikt event på ett html-element
@@ -43,6 +74,7 @@ clickerButton.addEventListener(
     () => {
         // vid click öka score med 1
         money += moneyPerClick;
+        numberOfClicks += 1;
         // console.log(clicker.score);
     },
     false
@@ -61,20 +93,34 @@ function step(timestamp) {
     moneyTracker.textContent = Math.round(money);
     mpsTracker.textContent = moneyPerSecond;
     mpcTracker.textContent = moneyPerClick;
+    upgradesTracker.textContent = acquiredUpgrades;
 
     if (timestamp >= last + 1000) {
         money += moneyPerSecond;
         last = timestamp;
     }
 
-    // exempel på hur vi kan använda värden för att skapa tex 
-    // achievements. Titta dock på upgrades arrayen och gör något rimligare om du
-    // vill ha achievements.
-    // på samma sätt kan du även dölja uppgraderingar som inte kan köpas
-    if (moneyPerClick == 10 && !achievementTest) {
-        achievementTest = true;
-        message('Du har hittat en FOSSIL!', 'achievement');
-    }
+    // achievements, utgår från arrayen achievements med objekt
+    // koden nedan muterar (ändrar) arrayen och tar bort achievements 
+    // som spelaren klarat
+    // villkoren i första ifsatsen ser till att achivments som är klarade
+    // tas bort. Efter det så kontrolleras om spelaren har uppfyllt kriterierna
+    // för att få den achievement som berörs.
+    achievements = achievements.filter((achievement) => {
+        if (achievement.acquired) {
+            return false;
+        }
+        if (achievement.requiredUpgrades && acquiredUpgrades >= achievement.requiredUpgrades) {
+            achievement.acquired = true;
+            message(achievement.description, 'achievement');
+            return false;
+        } else if (achievement.requiredClicks && numberOfClicks >= achievement.requiredClicks) {
+            achievement.acquired = true;
+            message(achievement.description, 'achievement');
+            return false;
+        }
+        return true;
+    });
 
     window.requestAnimationFrame(step);
 }
@@ -109,7 +155,13 @@ upgrades = [
     {
         name: 'Frayer',
         cost: 10,
-        amount: 1,
+        clicks: 1,
+    },
+
+    {
+        name: 'Frayer',
+        cost: 50,
+        clicks: 5,
     },
     {
         name: 'XXL Airfryer',
@@ -141,7 +193,6 @@ upgrades = [
         cost: 1000000,
         amount: 100000,
     },
-    
 ];
 
 /* createCard är en funktion som tar ett upgrade objekt som parameter och skapar
@@ -168,17 +219,21 @@ function createCard(upgrade) {
     const header = document.createElement('p');
     header.classList.add('title');
     const cost = document.createElement('p');
-
-    header.textContent = `${upgrade.name}, +${upgrade.amount} per sekund.`;
+    if (upgrade.amount) {
+        header.textContent = `${upgrade.name}, +${upgrade.amount} per sekund.`;
+    } else {
+        header.textContent = `${upgrade.name}, +${upgrade.clicks} per klick.`;
+    }
     cost.textContent = `Köp för ${upgrade.cost} Friterade personer.`;
 
     card.addEventListener('click', (e) => {
         if (money >= upgrade.cost) {
-            moneyPerClick++;
+            acquiredUpgrades++;
             money -= upgrade.cost;
             upgrade.cost *= 1.5;
-            cost.textContent = 'Köp för ' + upgrade.cost + ' benbitar';
-            moneyPerSecond += upgrade.amount;
+            cost.textContent = 'Köp för ' + upgrade.cost + ' Friterade personer ';
+            moneyPerSecond += upgrade.amount ? upgrade.amount : 0;
+            moneyPerClick += upgrade.clicks ? upgrade.clicks : 0;
             message('Du gör Stefan glad', 'success');
         } else {
             message('Du har inte råd.', 'warning');

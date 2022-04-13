@@ -198,16 +198,16 @@ footer {
  * meddelanden. Javascript används för att lägga till stilen på meddelandet
  */
 .warning {
-    background-color: palevioletred;
+    background-color: rgb(129, 0, 0);
 }
 
 .success {
-    background-color: mediumspringgreen;
+    background-color: rgb(0, 128, 79);
 }
 
 .achievement {
     color: whitesmoke;
-    background-color: purple;
+    background-color: rgb(79, 33, 126);
 }
 
 /* dessa kort används för spelets uppgraderingar 
@@ -219,6 +219,7 @@ footer {
     justify-content: space-between;
     cursor: pointer;
     border: 2px solid #262626;
+    background: rgba(0, 0, 0, 0.4);
     margin: 0.5rem 0;
     padding: 1rem 0.5rem;
 }
@@ -233,7 +234,7 @@ footer {
     font-weight: 600;
 }
 
-.headrer_h1{
+.header_h1{
     margin-right: 30%;
     margin-left: 30%;
 }
