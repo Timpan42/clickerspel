@@ -2,8 +2,11 @@
 Fritera världen
 Tim Fagerdal 
 2022-04-14
+
 tagline: Stefan vill fritera människor och genom kraften av att clicka så kommer han uppnå sin dröm.
+
 Url: https://timpan42.github.io/clickerspel/
+
 git: https://github.com/Timpan42/clickerspel 
 
 ## Inledning
