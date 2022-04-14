@@ -159,7 +159,7 @@ upgrades = [
     },
 
     {
-        name: 'Frayer',
+        name: 'Big Frayer',
         cost: 50,
         clicks: 5,
     },
